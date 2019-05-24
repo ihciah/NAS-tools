@@ -1,0 +1,14 @@
+version: '2'
+services:
+  aria2:
+    image: ihciah/aria2:subtitle16800
+    container_name: aria2
+    network_mode: "host"
+    volumes:
+      - /mnt/common-blk/shared:/data
+      - /mnt/common-blk/aria2-data:/aria2-data
+      - ../conf:/etc/aria2:ro
+    restart: always
+    logging:
+      driver: "none"
+
