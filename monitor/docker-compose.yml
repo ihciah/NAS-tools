@@ -1,0 +1,34 @@
+version: '2'
+services:
+  cephexporter:
+    image: digitalocean/ceph_exporter
+    container_name: cephexporter
+    restart: always
+    logging:
+      driver: "none"
+    volumes:
+      - /etc/ceph:/etc/ceph
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: always
+    logging:
+      driver: "none"
+    links:
+      - cephexporter
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus-data:/prometheus
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: always
+    logging:
+      driver: "none"
+    links:
+      - prometheus
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+

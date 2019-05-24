@@ -1,0 +1,22 @@
+https://aria2.yourdomain.com {
+    gzip
+    proxy /jsonrpc http://localhost:16800 {
+        websocket
+    }
+    root /var/www
+    tls ihciah@gmail.com
+    tls {
+        dns cloudflare
+    }
+}
+
+https://monitor.yourdomain.com {
+    gzip
+    proxy / http://localhost:3000 {
+        websocket
+    }
+    tls ihciah@gmail.com
+    tls {
+        dns cloudflare
+    }
+}
