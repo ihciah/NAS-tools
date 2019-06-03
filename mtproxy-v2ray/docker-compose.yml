@@ -1,0 +1,10 @@
+version: "3"
+services:
+  v2ray:
+    image: ihciah/v2ray
+    container_name: v2ray
+    restart: always
+    command: v2ray -config=/etc/v2ray/config.json
+    network_mode: "host"
+    volumes:
+      - ./v2ray.conf:/etc/v2ray/config.json

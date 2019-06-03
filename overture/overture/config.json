@@ -1,0 +1,71 @@
+{
+  "BindAddress": ":53",
+  "PrimaryDNS": [
+    {
+      "Name": "Ali",
+      "Address": "223.6.6.6:53",
+      "Protocol": "udp",
+      "SOCKS5Address": "",
+      "Timeout": 3,
+      "EDNSClientSubnet": {
+        "Policy": "disable",
+        "ExternalIP": "",
+        "NoCookie": true
+      }
+    },
+    {
+      "Name": "Baidu",
+      "Address": "180.76.76.76:53",
+      "Protocol": "udp",
+      "SOCKS5Address": "",
+      "Timeout": 3,
+      "EDNSClientSubnet": {
+        "Policy": "disable",
+        "ExternalIP": "",
+        "NoCookie": true
+      }
+    }
+  ],
+  "AlternativeDNS": [
+    {
+      "Name": "OpenDNS",
+      "Address": "208.67.222.222:443",
+      "Protocol": "tcp",
+      "SOCKS5Address": "",
+      "Timeout": 6,
+      "EDNSClientSubnet": {
+        "Policy": "disable",
+        "ExternalIP": "",
+        "NoCookie": true
+      }
+    },
+    {
+      "Name": "Google",
+      "Address": "8.8.8.8:53",
+      "Protocol": "udp",
+      "SOCKS5Address": "",
+      "Timeout": 6,
+      "EDNSClientSubnet": {
+        "Policy": "disable",
+        "ExternalIP": "",
+        "NoCookie": true
+      }
+    }
+  ],
+  "OnlyPrimaryDNS": false,
+  "IPv6UseAlternativeDNS": false,
+  "WhenPrimaryDNSAnswerNoneUse": "PrimaryDNS",
+  "IPNetworkFile": {
+    "Primary": "/etc/overture/ip_network_primary",
+    "Alternative": "/etc/overture/ip_network_alternative"
+  },
+  "DomainFile": {
+    "Primary": "/etc/overture/domain_primary",
+    "Alternative": "/etc/overture/domain_alternative"
+  },
+  "HostsFile": "/etc/overture/hosts",
+  "MinimumTTL": 0,
+  "DomainTTLFile" : "/etc/overture/domain_ttl",
+  "CacheSize" : 0,
+  "RejectQType": [255]
+}
