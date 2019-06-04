@@ -20,3 +20,13 @@ https://monitor.yourdomain.com {
         dns cloudflare
     }
 }
+
+:8080 {
+    gzip
+    basicauth / user password
+    #tls self_signed
+    webdav / {
+       scope /mnt/common-blk/shared
+       modify false
+    }
+}

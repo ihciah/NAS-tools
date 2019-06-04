@@ -1,0 +1,9 @@
+version: "3"
+services:
+  sftp:
+    image: atmoz/sftp
+    volumes:
+      - /mnt/common-blk/shared:/home/share/shared:ro
+    ports:
+      - "18222:22"
+    command: share:ihciahshare:1009
