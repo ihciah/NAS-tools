@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  telegram-proxy:
+    image: ihciah/mtproxy:latest
+    ports:
+      - "43210:443/tcp"
+      - "43210:443/udp"
+    volumes:
+      - "proxy-config:/data"
+    restart: always
+    env_file:
+      - ./config.env
+    dns: 223.6.6.6
+    #command: -v
+volumes:
+  proxy-config:

@@ -1,0 +1,32 @@
+#!/bin/sh
+ip link set $INTERFACE up
+ip addr add 192.168.100.2/32 dev $INTERFACE
+ip route add 192.168.100.0/24 dev $INTERFACE
+
+#Telegram
+ip route add 149.154.160.0/20 dev $INTERFACE
+ip route add 149.154.164.0/22 dev $INTERFACE
+ip route add 91.108.4.0/22 dev $INTERFACE
+ip route add 91.108.56.0/22 dev $INTERFACE
+ip route add 91.108.8.0/22 dev $INTERFACE
+ip route add 149.154.172.0/22 dev $INTERFACE
+ip route add 91.108.12.0/22 dev $INTERFACE
+ip route add 91.108.20.0/22 dev $INTERFACE
+ip route add 91.108.36.0/23 dev $INTERFACE
+ip route add 91.108.38.0/23 dev $INTERFACE
+
+#DNS
+ip route add 8.8.8.8/32 dev $INTERFACE
+ip route add 1.1.1.1/32 dev $INTERFACE
+
+#Google
+ip route add 172.217.0.0/16 dev $INTERFACE
+
+#Fudan Campus
+ip route add 10.0.0.0/8 dev $INTERFACE
+
+sysctl -w net.ipv4.ip_forward=1
+iptables -t nat -A POSTROUTING -s 192.168.100.0/24 ! -d 192.168.100.0/24 -m comment --comment "tinc" -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.31.0/24 ! -d 192.168.31.0/24 -m comment --comment "nas-gw" -j MASQUERADE
+
+/etc/free-route/up.sh

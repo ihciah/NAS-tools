@@ -1,0 +1,26 @@
+#!/bin/sh
+/etc/free-route/down.sh
+iptables -t nat -D POSTROUTING -s 192.168.100.0/24 ! -d 192.168.100.0/24 -m comment --comment "tinc" -j MASQUERADE
+iptables -t nat -D POSTROUTING -s 192.168.31.0/24 ! -d 192.168.31.0/24 -m comment --comment "nas-gw" -j MASQUERADE
+
+ip route del 149.154.160.0/20 dev $INTERFACE
+ip route del 149.154.164.0/22 dev $INTERFACE
+ip route del 91.108.4.0/22 dev $INTERFACE
+ip route del 91.108.56.0/22 dev $INTERFACE
+ip route del 91.108.8.0/22 dev $INTERFACE
+ip route del 149.154.172.0/22 dev $INTERFACE
+ip route del 91.108.12.0/22 dev $INTERFACE
+ip route del 91.108.20.0/22 dev $INTERFACE
+ip route del 91.108.36.0/23 dev $INTERFACE
+ip route del 91.108.38.0/23 dev $INTERFACE
+
+ip route del 8.8.8.8/32 dev $INTERFACE
+ip route del 1.1.1.1/32 dev $INTERFACE
+
+p route del 172.217.0.0/16 dev $INTERFACE
+
+ip route del 10.0.0.0/8 dev $INTERFACE
+
+ip route del 192.168.100.0/24 dev $INTERFACE
+ip addr del 192.168.100.2/32 dev $INTERFACE
+ip link set $INTERFACE down
