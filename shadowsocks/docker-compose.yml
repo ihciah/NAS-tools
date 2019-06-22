@@ -1,0 +1,25 @@
+#Proxy through 53 port for users in china mainland
+version: "2"
+services:
+  shadowsocks-all:
+    container_name: shadowsocks
+    image: shadowsocks/shadowsocks-libev
+    ports:
+      - "8388:8388/tcp"
+      - "8388:8388/udp"
+    environment:
+      - METHOD=chacha20-ietf-poly1305
+      - PASSWORD=111111111111111
+      - DNS_ADDRS=192.168.101.1
+    restart: always
+    dns: 192.168.31.1
+    networks:
+      freebr:
+        ipv4_address: 192.168.101.2
+networks:
+  freebr:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.101.1/24
+          gateway: 192.168.101.1
