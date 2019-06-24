@@ -1,5 +1,4 @@
 #!/bin/sh
-VPN_GATEWAY=192.168.100.1
 LOCAL_IP=192.168.31.18
 ROUTER_IP=192.168.31.1
 LOCAL_NETWORK=192.168.0.0/16
@@ -14,7 +13,7 @@ ipset restore -f $SETFILE
 
 #Add route table 
 ip route flush table $ROUTE_TABLE
-ip route add default via $VPN_GATEWAY dev $VPN_INTERFACE table $ROUTE_TABLE
+ip route add default dev $VPN_INTERFACE table $ROUTE_TABLE
 ip rule add fwmark $MARK_VALUE table $ROUTE_TABLE
 
 #Add iptables rules

@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   telegram-proxy:
@@ -11,16 +11,7 @@ services:
     restart: always
     env_file:
       - ./config.env
-    dns: 192.168.102.1
-    networks:
-      mtbr:
-        ipv4_address: 192.168.102.2
+    dns: 223.6.6.6
+    #command: -v
 volumes:
   proxy-config:
-networks:
-  mtbr:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.102.1/24
-          gateway: 192.168.102.1
