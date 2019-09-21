@@ -14,3 +14,8 @@ china_ip_list.txt: <https://github.com/17mon/china_ip_list>
 
 
 
+内网设备使用该透明代理，修改网关和 DNS 为代理服务器的 IP。
+
+docker container 使用代理，需要指定 ip 为开启代理的网段内的 ip，参考本项目的 shadowsocks 配置。
+
+外网设备可以直接使用 shadowsocks 接入。

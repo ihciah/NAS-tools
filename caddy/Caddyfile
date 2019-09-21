@@ -21,12 +21,29 @@ https://monitor.yourdomain.com {
     }
 }
 
-:8080 {
+https://dav.yourdomain.com:8080 {
     gzip
-    basicauth / user password
-    #tls self_signed
+    timeouts none
+    basicauth / readonlyuser password
+    tls ihciah@gmail.com
+    tls {
+        dns cloudflare
+    }
     webdav / {
        scope /mnt/common-blk/shared
        modify false
+    }
+}
+https://dav.yourdomain.com:8081 {
+    gzip
+    timeouts none
+    basicauth / user password
+    tls ihciah@gmail.com
+    tls {
+        dns cloudflare
+    }
+    webdav / {
+       scope /mnt/common-blk/shared
+       modify true
     }
 }

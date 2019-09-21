@@ -26,7 +26,7 @@ ip route add 172.217.0.0/16 dev $INTERFACE
 ip route add 10.0.0.0/8 dev $INTERFACE
 
 sysctl -w net.ipv4.ip_forward=1
-iptables -t nat -A POSTROUTING -s 192.168.100.0/24 ! -d 192.168.100.0/24 -m comment --comment "tinc" -j MASQUERADE
-iptables -t nat -A POSTROUTING -s 192.168.31.0/24 ! -d 192.168.31.0/24 -m comment --comment "nas-gw" -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -m comment --comment "tinc" -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.31.0/24 -m comment --comment "nas-gw" -j MASQUERADE
 
 /etc/free-route/up.sh
