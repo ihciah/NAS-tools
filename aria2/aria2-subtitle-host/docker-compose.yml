@@ -1,7 +1,7 @@
 version: '2'
 services:
   aria2:
-    image: ihciah/aria2:subtitle16800
+    image: ihciah/aria2:subtitle
     container_name: aria2
     network_mode: "host"
     volumes:
