@@ -4,20 +4,19 @@ import json
 import sys
 from subtitle.subtitle_downloader import SubtitleDownloader
 
-RPC = "http://localhost:6800/jsonrpc"
+RPC = "http://localhost:%s/jsonrpc"
 CONFIG = "/etc/aria2/aria2.conf"
 
 
-def load_token(config_path: str):
-    token = None
+def load_cfg(config_path: str, key: str):
+    val = None
     with open(config_path, "r") as f:
         lines = f.readlines()
     for line in lines:
-        if line.startswith("rpc-secret="):
-            token = "token:" + line[len("rpc-secret="):].strip()
+        if line.startswith(key):
+            val = line[len(key):].strip()
             break
-    return token
-
+    return val
 
 def load_file_list(gid: str, rpc: str, token):
     params = [token, gid] if token else [gid]
@@ -41,7 +40,8 @@ def download_subtitles(file_list: list):
 
 
 if __name__ == "__main__":
-    token = load_token(CONFIG)
-    files = load_file_list(sys.argv[1], RPC, token)
+    token = "token:" + load_cfg(CONFIG, "rpc-secret=") or ""
+    rpc_addr = RPC % (load_cfg(CONFIG, "rpc-listen-port=") or "6800")
+    files = load_file_list(sys.argv[1], rpc_addr, token)
     download_subtitles(files)
 
