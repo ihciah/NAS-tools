@@ -16,7 +16,7 @@ RUN set -xe && \
 VOLUME /data /aria2-data /etc/aria2
 
 CMD set -xe && \
-	touch /aria2-data/aria2.session && \
+        gosu aria2 touch /aria2-data/aria2.session && \
         gosu aria2 aria2c --conf-path=/etc/aria2/aria2.conf \
                         --dir=/data \
                         --on-bt-download-complete=/script/bt-complete.sh \
