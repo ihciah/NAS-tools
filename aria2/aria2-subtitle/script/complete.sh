@@ -1,2 +1,2 @@
 #!/bin/sh
-sub $3
+sub "$3"
