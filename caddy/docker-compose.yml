@@ -10,3 +10,4 @@ services:
         source: "./Caddyfile"
         target: "/etc/caddy/Caddyfile"
       - "./data:/data/caddy"
+      - "./config:/config"
